@@ -8,20 +8,19 @@ echo -e "\t            _     _
 "
 
 #Variables
-mkdir tmp && cd tmp
 dir="$(pwd)"
 cpus="$(nproc)"
 
 
 #Dirs
-mkdir $HOME/txt\
-    $HOME/.fonts\
-    $HOME/Code $HOME/Code/Shell\
-    $HOME/suckless\
-    $HOME/.config\
-    $HOME/.config/alacritty\
+mkdir $HOME/txt \
+    $HOME/.fonts \
+    $HOME/Code $HOME/Code/Shell \
+    $HOME/suckless \
+    $HOME/.config \
+    $HOME/.config/alacritty \
     $HOME/.config/zathura
-chmod 755 .fonts
+chmod 755 $HOME/.fonts
 
 #Update system
 sudo xbps-install -Syy
@@ -34,28 +33,28 @@ sudo xbps-install -S --yes base-devel xorg libXft-devel libX11-devel libXinerama
 #Resources
 git clone https://github.com/nobie137/dotfiles $dir/dotfiles
 git clone https://github.com/nobie137/ShellScripts $dir/scripts
+touch $HOME/.Xauthority
 
 #Move resources/configs
 mv $dir/scripts/* /usr/bin
-mv $dir/dotfiles/.bashrc\
-    $dir/dotfiles/.dir_colors\
-    $dir/dotfiles/.xinitrc\
-    $dir/dotfiles/.vimrc\
-    $dir/dotfiles/.imwheelrc\
-    $HOME/
+mv $dir/dotfiles/.bashrc \
+    $dir/dotfiles/.dir_colors \
+    $dir/dotfiles/.xwinitrc \
+    $dir/dotfiles/.vimrc \
+    $dir/dotfiles/.imwheelrc \
+    $HOME
 mv $dir/dotfiles/alacritty.yml $HOME/.config/alacritty
 mv $dir/dotfiles/zathurarc $HOME/.config/zathura/zathurarc
+xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 #Download and compile dwm and dmenu
 git clone https://github.com/nobie137/dwm $HOME/sucklesss/dwm
 git clone https://git.suckless.org/dmenu $HOME/sucklesss/dmenu
-make -C $HOME/suckless/dwm -j $cpus && make install -C $HOME/dwm -j $cpus
-make -C $HOME/suckless/dmenu -j $cpus && make install -C $HOME/dwm -j $cpus
+make -C $HOME/suckless/dwm -j $cpus && make install -C $HOME/suckless/dwm -j $cpus
+make -C $HOME/suckless/dmenu -j $cpus && make install -C $HOME/suckless/dwm -j $cpus
 
 #Font
 mv $dir/dotfiles/font/* $HOME/.fonts
-
-xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 #Cleanup
 rm -rf $dir
