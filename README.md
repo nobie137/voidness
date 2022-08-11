@@ -1,0 +1,2 @@
+# voidness
+Void install script
