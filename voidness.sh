@@ -39,7 +39,7 @@ touch $HOME/.Xauthority
 mv $dir/scripts/* /usr/bin
 mv $dir/dotfiles/.bashrc \
     $dir/dotfiles/.dir_colors \
-    $dir/dotfiles/.xwinitrc \
+    $dir/dotfiles/.xinitrc \
     $dir/dotfiles/.vimrc \
     $dir/dotfiles/.imwheelrc \
     $HOME
@@ -50,8 +50,8 @@ xdg-mime default org.pwmt.zathura.desktop application/pdf
 #Download and compile dwm and dmenu
 git clone https://github.com/nobie137/dwm $HOME/sucklesss/dwm
 git clone https://git.suckless.org/dmenu $HOME/sucklesss/dmenu
-make -C $HOME/suckless/dwm -j $cpus && make install -C $HOME/suckless/dwm -j $cpus
-make -C $HOME/suckless/dmenu -j $cpus && make install -C $HOME/suckless/dwm -j $cpus
+sudo make clean install -C $HOME/suckless/dwm -j $cpus
+sudo make clean install -C $HOME/suckless/dwm -j $cpus
 
 #Font
 mv $dir/dotfiles/font/* $HOME/.fonts
